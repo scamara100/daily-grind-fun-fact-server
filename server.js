@@ -7,7 +7,8 @@ const port = 3000
 app.get('/api/fun-fact', async (req, res) => {
     try{
         const response = await axios.get('https://uselessfacts.jsph.pl/api/v2/facts/random')
-        res.json(response.data)
+        // send only the text
+        res.json({id : response.data.id, text: response.data.text})
     } catch(error){
         if(response.data){
             console.log("API Error:", error.response.status, error.response.data)
